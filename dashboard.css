@@ -128,7 +128,7 @@ body {
     font-size: 0.9rem;
 }
 
-.task-item .task-delete {
+.task-item .task-actions .task-delete {
     background: none;
     border: none;
     color: #ff6b6b;
@@ -137,10 +137,21 @@ body {
     transition: all 0.2s ease;
 }
 
-.task-item .task-delete:hover {
+.task-item .task-actions .task-delete:hover {
     transform: scale(1.2);
 }
+.task-item .task-actions .task-toggle {
+    background: none;
+    border: none;
+    color: #12d633;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
+.task-item .task-actions .task-toggle:hover {
+    transform: scael(1.2);
+}
 .empty-message {
     justify-content: center;
     color: rgba(255, 255, 255, 0.3);
