@@ -150,7 +150,7 @@ body {
 }
 
 .task-item .task-actions .task-toggle:hover {
-    transform: scael(1.2);
+    transform: scale(1.2);
 }
 .empty-message {
     justify-content: center;
