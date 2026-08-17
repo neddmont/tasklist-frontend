@@ -30,8 +30,11 @@ if (registerForm) {
             const data = await response.json();
 
             if (response.ok) {
-                message.textContent = '✅ Регистрация успешна! Перенаправление...';
-                message.style.color = '#51cf66';
+                console.log("✅ Регистрация успешна!");
+                if (message) {
+                    message.textContent = '✅ Регистрация успешна! Перенаправление...';
+                    message.style.color = '#51cf66';
+                }
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 1500);
