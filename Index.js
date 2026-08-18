@@ -299,10 +299,9 @@ async function loadTasks() {
             </li>
         `;
     }
-}
-// 
-// 5.2. Обновление статуса задачи (выполнено/невыполнено)
-        document.querySelectorAll('.task-toggle').forEach(btn => {
+
+
+    document.querySelectorAll('.task-toggle').forEach(btn => {
                     btn.addEventListener('click', async (e) => {
                     console.log('🟢 Клик по task-toggle!'); //
                     const taskId = e.target.dataset.id;
@@ -312,8 +311,9 @@ async function loadTasks() {
                     await toggleTaskStatus(taskId, newDone);
                 });
         });
-
-
+}
+// 
+// 5.2. Обновление статуса задачи (выполнено/невыполнено)
 
         async function toggleTaskStatus(taskId, newDone) {
             const token = localStorage.getItem('access_token');
