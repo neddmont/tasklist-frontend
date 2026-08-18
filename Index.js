@@ -302,54 +302,55 @@ async function loadTasks() {
 }
 // 
 // 5.2. Обновление статуса задачи (выполнено/невыполнено)
- document.querySelectorAll('.task-toggle').forEach(btn => {
-            btn.addEventListener('click', async (e) => {
-                const taskId = e.target.dataset.id;
-                const currentDone = e.target.dataset.done === 'true'; // true или false
-                const newDone = !currentDone; // инвертируем
+        document.querySelectorAll('.task-toggle').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                    console.log('🟢 Клик по task-toggle!'); //
+                    const taskId = e.target.dataset.id;
+                    const currentDone = e.target.dataset.done === 'true'; // true или false
+                    const newDone = !currentDone; // инвертируем
 
-                await toggleTaskStatus(taskId, newDone);
-            });
+                    await toggleTaskStatus(taskId, newDone);
+                });
         });
 
 
 
-async function toggleTaskStatus(taskId, newDone) {
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-        alert('Вы не авторизованы');
-        window.location.href = 'login.html';
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API_URL}/tasks/${taskId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ done: newDone })
-        });
-
-        if (response.ok) {
-            // ✅ Успешно обновили — перезагружаем список
-            loadTasks();
-        } else if (response.status === 401) {
-            // ❌ Токен невалидный — разлогиниваем
-            localStorage.removeItem('access_token');
-            localStorage.removeItem('user_email');
+        async function toggleTaskStatus(taskId, newDone) {
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+            alert('Вы не авторизованы');
             window.location.href = 'login.html';
-        } else {
-            // ❌ Другая ошибка
-            const data = await response.json();
-            alert('Ошибка: ' + (data.detail || 'Не удалось обновить статус'));
+            return;
         }
-    } catch (error) {
-        alert('Ошибка соединения с сервером');
-        console.error('Toggle task error:', error);
+
+        try {
+            const response = await fetch(`${API_URL}/tasks/${taskId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ done: newDone })
+            });
+
+            if (response.ok) {
+            // ✅ Успешно обновили — перезагружаем список
+             loadTasks();
+            } else if (response.status === 401) {
+                // ❌ Токен невалидный — разлогиниваем
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('user_email');
+                window.location.href = 'login.html';
+            } else {
+                // ❌ Другая ошибка
+                const data = await response.json();
+                alert('Ошибка: ' + (data.detail || 'Не удалось обновить статус'));
+            }
+        } catch (error) {
+            alert('Ошибка соединения с сервером');
+            console.error('Toggle task error:', error);
+        }
     }
-}
 // 
 
 
