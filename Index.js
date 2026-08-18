@@ -15,7 +15,7 @@ if (registerForm) {
         const message = document.getElementById('message');
 
         if (!email || !password) {
-            message.textContent = '❌ Заполните все поля';
+            message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Заполните все поля';
             message.style.color = '#ff6b6b';
             return;
         }
@@ -30,20 +30,19 @@ if (registerForm) {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("✅ Регистрация успешна!");
                 if (message) {
-                    message.textContent = '✅ Регистрация успешна! Перенаправление...';
+                    message.innerHTML = '<i class="fas fa-check-circle"></i> Регистрация успешна! Перенаправление...';
                     message.style.color = '#51cf66';
                 }
                 setTimeout(() => {
                     window.location.href = 'login.html';
                 }, 1500);
             } else {
-                message.textContent = '❌ ' + (data.detail || 'Ошибка регистрации');
+                message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + (data.detail || 'Ошибка регистрации');
                 message.style.color = '#ff6b6b';
             }
         } catch (error) {
-            message.textContent = '❌ Ошибка соединения с сервером';
+            message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка соединения с сервером';
             message.style.color = '#ff6b6b';
             console.error('Register error:', error);
         }
@@ -64,7 +63,7 @@ if (loginForm) {
         const message = document.getElementById('message');
 
         if (!email || !password) {
-            message.textContent = '❌ Заполните все поля';
+            message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Заполните все поля';
             message.style.color = '#ff6b6b';
             return;
         }
@@ -84,17 +83,17 @@ if (loginForm) {
             if (response.ok) {
                 localStorage.setItem('access_token', data.access_token);
                 localStorage.setItem('user_email', email);
-                message.textContent = '✅ Вход выполнен! Перенаправление...';
+                message.innerHTML = '<i class="fas fa-check-circle"></i> Вход выполнен! Перенаправление...';
                 message.style.color = '#51cf66';
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
                 }, 1500);
             } else {
-                message.textContent = '❌ ' + (data.detail || 'Ошибка входа');
+                message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ' + (data.detail || 'Ошибка входа');
                 message.style.color = '#ff6b6b';
             }
         } catch (error) {
-            message.textContent = '❌ Ошибка соединения с сервером';
+            message.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Ошибка соединения с сервером';
             message.style.color = '#ff6b6b';
             console.error('Login error:', error);
         }
@@ -243,7 +242,7 @@ async function loadTasks() {
         if (!tasks || tasks.length === 0) {
             taskList.innerHTML = `
                 <li class="task-item empty-message">
-                    Задач пока нет. Создайте первую! 🚀
+                    Задач пока нет. Создайте первую! <i class="fas fa-rocket"></i>
                 </li>
             `;
             return;
@@ -252,12 +251,12 @@ async function loadTasks() {
         taskList.innerHTML = tasks.map(task => `
             <li class="task-item" data-id="${task.id}">
                 <span class="task-title">${task.title}</span>
-                <span class="task-done">${task.done ? '✅ Выполнено' : '⏳ В процессе'}</span>
+                <span class="task-done">${task.done ? '<i class="fas fa-check"></i>Выполнено' : '<i class="fas fa-clock"></i> В процессе'}</span>
                   <div class="task-actions">
                     <button class="task-toggle" data-id="${task.id}" data-done="${task.done}">
-                        ${task.done ? '↩️ Вернуть' : '✅ Выполнить'}
+                        ${task.done ? '<i class="fas fa-undo"></i> Вернуть' : '<i class="fas fa-check"></i> Выполнить'}
                     </button>
-                    <button class="task-delete" data-id="${task.id}">🗑️</button>
+                    <button class="task-delete" data-id="${task.id}"><i class="fas fa-trash"></i></button>
                 </div>
             </li>
         `).join('');
@@ -295,15 +294,15 @@ async function loadTasks() {
         console.error('Load tasks error:', error);
         taskList.innerHTML = `
             <li class="task-item empty-message">
-                ❌ Ошибка загрузки задач
+                <i class="fas fa-exclamation-triangle"></i> Ошибка загрузки задач
             </li>
         `;
     }
 
+    // 5.2. Обновление статуса задачи (выполнено/невыполнено)
 
     document.querySelectorAll('.task-toggle').forEach(btn => {
                     btn.addEventListener('click', async (e) => {
-                    console.log('🟢 Клик по task-toggle!'); //
                     const taskId = e.target.dataset.id;
                     const currentDone = e.target.dataset.done === 'true'; // true или false
                     const newDone = !currentDone; // инвертируем
@@ -312,8 +311,6 @@ async function loadTasks() {
                 });
         });
 }
-// 
-// 5.2. Обновление статуса задачи (выполнено/невыполнено)
 
         async function toggleTaskStatus(taskId, newDone) {
             const token = localStorage.getItem('access_token');

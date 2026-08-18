@@ -6,17 +6,18 @@
     <title>TaskList — Dashboard</title>
     <link rel="stylesheet" href="AuthHTML.css" />
     <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 
     <header class="dashboard-header">
         <div class="header-left">
-            <h1>📋 <span class="highlight">TaskList</span></h1>
+            <h1><i class="fas fa-tasks"></i><span class="highlight">TaskList</span></h1>
         </div>
         <div class="header-right">
             <span id="userEmail" class="user-email">user@example.com</span>
-            <button id="logoutBtn" class="logout-button">🚪 Выйти</button>
+            <button id="logoutBtn" class="logout-button"><i class="fas fa-sign-out-alt"></i> Выйти</button>
         </div>
     </header>
 
@@ -25,13 +26,13 @@
         <div class="task-section">
             <div class="task-header">
                 <h2>Мои задачи</h2>
-                <button id="openCreateTaskBtn" class="create-task-btn">➕ Новая задача</button>
+                <button id="openCreateTaskBtn" class="create-task-btn"><i class="fas fa-plus"></i>Новая задача</button>
             </div>
 
             <!-- Список задач -->
             <ul id="taskList" class="task-list">
                 <!-- Задачи будут добавляться сюда через JS -->
-                <li class="task-item empty-message">Задач пока нет. Создайте первую! 🚀</li>
+                <li class="task-item empty-message">Задач пока нет. Создайте первую! <i class="fas fa-rocket"></i></li>
             </ul>
         </div>
     </main>
@@ -43,7 +44,7 @@
             <h2>Создать задачу</h2>
             <form id="createTaskForm">
                 <input type="text" id="taskTitle" placeholder="Название задачи" required />
-                <button type="submit">➕ Создать</button>
+                <button type="submit"><i class="fas fa-plus"></i>Создать</button>
             </form>
         </div>
     </div>
