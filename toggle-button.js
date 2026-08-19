@@ -75,6 +75,8 @@ body {
 class ToggleButton extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode:'open'});
+
+
         this.shadowRoot.innerHTML =` 
         <style>${styles}</style>
          <input type="checkbox" id="mode-toggler">
@@ -89,31 +91,29 @@ class ToggleButton extends HTMLElement {
             </div> 
         `
 
-    }
-}
-
-const toggler = this.shadowRoot.getElementById('mode-toggler');
+        const toggler = this.shadowRoot.getElementById('mode-toggler');
 
 // Восстанавливаем тему из localStorage
-if (localStorage.getItem('theme') === 'dark') {
-    toggler.checked = true;
-    document.body.classList.add('dark-theme');
-} else {
-    toggler.checked = false;
-    document.body.classList.remove('dark-theme');
-}
+            if (localStorage.getItem('theme') === 'dark') {
+                toggler.checked = true;
+                document.body.classList.add('dark-theme');
+            } else {
+                toggler.checked = false;
+                document.body.classList.remove('dark-theme');
+            }
 
-// Сохраняем при изменении
-toggler.addEventListener('change', () => {
-    if (toggler.checked) {
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', 'light');
+            // Сохраняем при изменении
+            toggler.addEventListener('change', () => {
+                if (toggler.checked) {
+                    document.body.classList.add('dark-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
     }
-});
-    
-
+}
 
 customElements.define('toggle-button', ToggleButton)
