@@ -2,12 +2,9 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #d6dbe5;
-    color: #fff;
-}
-body.dark-theme {
-    background: #0b0e14;
-    color: #ffffff;
+    background: #e8edf5;
+    color: #1a1e2b;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* --- Шапка --- */
@@ -16,18 +13,21 @@ body.dark-theme {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.04);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .header-left h1 {
     font-size: 1.8rem;
     font-weight: 700;
     margin: 0;
+    color:#1a1e2b;
+    transition: color 0.3s ease;
 }
 
 .header-right {
@@ -38,19 +38,19 @@ body.dark-theme {
 .header-right toggle-button {
     display: inline-block;
     vertical-align: middle;
-    /* Убедись, что кнопка не растягивается */
     line-height: 0;
+    transform:scale(0.6);
 }
 
 .user-email {
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .logout-button {
     background: rgba(255, 70, 70, 0.15);
-    color: #ff6b6b;
-    border: 1px solid rgba(255, 70, 70, 0.25);
+    color: #c0392b;
+    border: 1px solid rgba(220, 80, 80, 0.15);
     padding: 0.5rem 1.2rem;
     border-radius: 10px;
     font-weight: 600;
@@ -75,17 +75,20 @@ body.dark-theme {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    color: #1a1e2b;
+    transition: color 0.3s ease;
 }
 
 .task-header h2 {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #fff;
+    color: #1a1e2b;
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .create-task-btn {
-    background: linear-gradient(135deg, #5882c1, #3b5f8e);
+    background: linear-gradient(135deg, #6c8fc7, #4a6f9e);
     color: #fff;
     border: none;
     padding: 0.7rem 1.5rem;
@@ -94,12 +97,12 @@ body.dark-theme {
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(88, 130, 193, 0.25);
+    box-shadow: 0 8px 25px rgba(74, 111, 158, 0.2);
 }
 
 .create-task-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(88, 130, 193, 0.4);
+    box-shadow: 0 12px 35px rgba(74, 111, 158, 0.4);
 }
 
 /* --- Список задач --- */
@@ -113,24 +116,28 @@ body.dark-theme {
 }
 
 .task-item {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 16px;
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
 }
 
 .task-item:hover {
     background: rgba(255, 255, 255, 0.08);
     transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .task-item .task-title {
     font-size: 1.1rem;
     font-weight: 500;
+    color: #1a1e2b;
+    transition: color 0.3s;
 }
 
 .task-item .task-done {
@@ -141,7 +148,7 @@ body.dark-theme {
 .task-item .task-actions .task-delete {
     background: none;
     border: none;
-    color: #ff6b6b;
+    color: #e74c3c;
     font-size: 1.3rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -164,7 +171,7 @@ body.dark-theme {
 }
 .empty-message {
     justify-content: center;
-    color: rgba(255, 255, 255, 0.3);
+    color:  rgba(26, 30, 43, 0.35);
     font-style: italic;
     padding: 2rem;
 }
@@ -176,7 +183,7 @@ body.dark-theme {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -184,25 +191,20 @@ body.dark-theme {
     z-index: 100;
 }
 
-body.dark-theme .modal {
-    background: rgba(255, 255, 255, 0.7);
-}
 
 .modal.hidden {
     display: none;
 }
 
 .modal-content {
-    background: #1a1e26;
+    background: #ffffff;
     border-radius: 24px;
     padding: 2rem 2.5rem;
     max-width: 450px;
     width: 90%;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
     position: relative;
-}
-body.dark-theme .modal-content {
-    background: rgba(255, 255, 255, 0.7);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .modal-close {
@@ -210,36 +212,37 @@ body.dark-theme .modal-content {
     top: 1rem;
     right: 1.5rem;
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .modal-close:hover {
-    color: #fff;
+    color: #1a1e2b;
     transform: rotate(90deg);
 }
 
 .modal-content h2 {
     margin-top: 0;
-    color: #fff;
+    color: #1a1e2b;
 }
 
 .modal-content input {
     width: 100%;
     padding: 0.8rem 1.2rem;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: #f5f7fa;
+    color: #1a1e2b;
     font-size: 1rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 .modal-content input:focus {
     outline: none;
-    border-color: #5882c1;
+    border-color: #6c8fc7;
 }
 
 .modal-content button[type="submit"] {
@@ -258,4 +261,110 @@ body.dark-theme .modal-content {
 .modal-content button[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(88, 130, 193, 0.4);
+}
+
+/*//====Dark theme====//*/
+
+body.dark-theme {
+    background: #0b0e14;
+    color: #e8edf5;
+}
+
+body.dark-theme .dashboard-header {
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.dark-theme .header-left h1 {
+    color: #e8edf5;
+}
+
+body.dark-theme .user-email {
+    color: #b0b8c8;
+}
+
+body.dark-theme .logout-button {
+    background: rgba(255, 70, 70, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(255, 70, 70, 0.25);
+}
+
+body.dark-theme .logout-button:hover {
+    background: rgba(255, 70, 70, 0.25);
+}
+
+body.dark-theme .task-header {
+    color: #e8edf5;
+}
+
+body.dark-theme .task-header h2 {
+    color: #e8edf5;
+}
+
+body.dark-theme .create-task-btn {
+    background: linear-gradient(135deg, #5d7fb3, #3b5f8e);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(53, 72, 101, 0.3);
+}
+
+body.dark-theme .create-task-btn:hover {
+    box-shadow: 0 8px 25px rgba(53, 72, 101, 0.4);
+}
+
+body.dark-theme .task-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.dark-theme .task-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .task-item .task-title {
+    color: #e8edf5;
+}
+
+body.dark-theme .task-item .task-done {
+    color: #51cf66;
+}
+
+body.dark-theme .empty-message {
+    color: rgba(232, 237, 245, 0.3);
+}
+
+body.dark-theme .modal {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-theme .modal-content {
+    background: #1a1e26;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-theme .modal-close {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+body.dark-theme .modal-close:hover {
+    color: #ffffff;
+}
+
+body.dark-theme .modal-content h2 {
+    color: #e8edf5;
+}
+
+body.dark-theme .modal-content input {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #e8edf5;
+}
+
+body.dark-theme .modal-content input:focus {
+    border-color: #5d7fb3;
+}
+
+body.dark-theme .modal-content button[type="submit"] {
+    background: linear-gradient(135deg, #5d7fb3, #3b5f8e);
+    color: #ffffff;
 }
