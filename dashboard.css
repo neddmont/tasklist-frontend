@@ -2,9 +2,13 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e8edf5;
     color: #1a1e2b;
     transition: background 0.3s ease, color 0.3s ease;
+    background-image: url("day.png");
+    background-position: center;
+    background-size: 110% auto;
+    background-repeat: no-repeat;
+    transition: background-position 0.1s ease-out;
 }
 
 /* --- Шапка --- */
@@ -267,7 +271,11 @@ body {
 
 body.dark-theme {
     background: #0b0e14;
-    color: #e8edf5;
+    background-image: url("night.jpg");
+    background-size: 110% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-position 0.1s ease-out;
 }
 
 body.dark-theme .dashboard-header {

@@ -367,3 +367,14 @@ if (window.location.pathname.includes('index.html') ||
         window.location.href = 'dashboard.html';
     }
 }
+
+// 7. ПАРАЛЛАКС ФОНА
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+
+    const moveX = (x - 0.5) * 40;   
+    const moveY = (y - 0.5) * 40;
+
+    document.body.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
+});

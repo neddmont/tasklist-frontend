@@ -31,7 +31,7 @@ body {
     width: 100%;
     height: 100%;
     background-size: cover;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
 }
 
 .light {
